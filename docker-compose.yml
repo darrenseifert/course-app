@@ -1,0 +1,17 @@
+### `docker-compose.yml`
+services:
+  frontend:
+    build: ./frontend
+    ports:
+      - "5173:5173"
+    volumes:
+      # mount source code so Vite hot-reload works
+      - ./frontend:/app
+    command: sh -c "npm install && npm run dev -- --host"
+  backend:
+    build: ./backend
+    ports:
+      - "3000:3000"
+    volumes:
+       - ./backend:/app"
+    command: npm run start:dev
